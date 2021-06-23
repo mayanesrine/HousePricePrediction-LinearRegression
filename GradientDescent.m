@@ -10,7 +10,7 @@ for iter = 1:num_iters
         theta(1) = theta(1) - alpha * j1;
         theta(2) = theta(2) - alpha * j2;
         
-        % Sauvegarder le cost à chaque itération
+        % Save the cost at each iteration
         j(iter) = Cost(x, y, theta);
     end
 end

@@ -1,16 +1,15 @@
-% Charger le jeu de données depuis les 2 fichiers Input1.txt et Output.txt
+% Load the dataset from the Input1.txt and Output.txt files
 load('Input1.txt');
 load('Output.txt');
 
-% Stocker les valeurs du jeu de données dans des matrices séparées x et y
+% Store the dataset values in two separate matrices
 x = Input1(:, 1);
 y = Output(:, 1);
 
-% Tracer les points de données x et y dans une nouvelle figure
-% J'ai pris l'exemple du cours : x fait référence à la taille d'une maison
-% et y fait référence à son prix
+% Plot the x and y data points
+% x refers to the size of a house and y refers to its price
 
-% Ouvrir une nouvelle fenêtre de figure
+% Open a new figure window
 figure;
 
 plot(x, y, 'rx');
@@ -20,31 +19,31 @@ ylabel('Price');
 
 m = length(y);
 
-% Définir les valeurs des réglages de la fonction du gradient descent 
-% alpha (taux d'apprentissage) = 0.01
+% Define the values of the gradient descent function settings
+% alpha (learning rate) = 0.01
 alpha = 0.025;
-% Nombre d'itérations = 100
+% Number of iterations = 100
 num_iters = 10000;
 
-% Ajouter une colonne de 1s à la matrice x
+% Add a column of 1s to the x matrix
 x = [ones(m, 1), x];
 
-% Initialiser les paramètres d'ajustement théta à 0
+% Set theta adjustment parameters to 0
 theta = zeros(2, 1);
 
-% Calculer le gradient descent
+% Calculate the gradient descent
 [theta, j] = GradientDescent(x, y, theta, alpha, num_iters);
 
-hold on; % Garder la dernière figure visible
+hold on; % Keep the last figure visible
 
-% Tracer le graphe de h(x)
+% Plot the h(x) graph
 PlotHypothesis(x, x * theta);
 
 hold off;
 
-% Tracer le graphe de convergence 
+% Plot the convergence graph 
 PlotCost(j);
 
-% Affichier les valeurs de théta calculées par la fonction du gradient descent
-fprintf('Valeurs de théta : \n');
+% Display theta values calculated by the gradient descent function
+fprintf('Theta values : \n');
 fprintf(' %f \n', theta);
